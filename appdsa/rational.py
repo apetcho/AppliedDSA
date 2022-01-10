@@ -328,4 +328,16 @@ class Rational:
         else:
             raise ValueError("Invalid operands for operator (>=) ")
 
-    
+    def __ne__(self, other: "Rational") -> bool:
+        """Overload the binary operator (!=) for Rational class.
+        
+        Examples
+        --------
+        >>> x = Rational(3, 5)
+        >>> y = Rational(2, 3)
+        >>> x != x
+        False
+        >>> x != y
+        True
+        """
+        return not(self.__eq__(other))
