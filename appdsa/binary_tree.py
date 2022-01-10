@@ -1,6 +1,8 @@
 """An Implementation of Binary Tree."""
 from typing import Any
 
+from matplotlib import container
+
 class Node:
     """Binary Tree node."""
     __slots__ = "_data", "_left", "_right"
@@ -149,17 +151,36 @@ class Node:
         if self.right:
             self.right.display_preorder()
 
-    def _preorder(self, container):
-        pass
+    def _preorder(self, container:list) -> None:
+        if self.left:
+            self.left._preorder(container)
+        container.append(self.data)
+        if self.right:
+            self.right._preorder(container)
 
-    def preorder(self):
-        pass
+    def preorder(self) -> list:
+        """ container = list()
+        self._preorder(container)
+        return container """
 
-    def _postorder(self, container):
-        pass
+    def display_postorder(self):
+        """ if self.right:
+            self.right.display_postorder()
+        print(self.data)
+        if self.left:
+            self.right.display_postorder() """
+
+    def _postorder(self, container:list):
+        """ if self.right:
+            self.right._postorder(container)
+        container.append(self.data)
+        if self.left:
+            self.left._postorder(container) """
 
     def postorder(self):
-        pass
+        """ container = list()
+        self._postorder(container)
+        return container """
 
 
 class BinarySearchTree:
