@@ -8,10 +8,10 @@ class Node:
         self._next = next
 
     def __str__(self):
-        pass
+        return str(self._data)
 
     def __repr__(self):
-        pass
+        return "Node({0}, {1!s})".format(self._data, self._next)
 
     @property
     def data(self):
