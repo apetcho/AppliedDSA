@@ -126,11 +126,34 @@ class Integer:
             return Integer(self.value * other.value)
         return Integer(0, False)
 
-    def __truediv__(self, other) -> "Integer":
-        pass
+    def __div__(self, other: "Integer") -> "Integer":
+        """Overload arithmetic division (/) for Integer objects.
+        
+        Paramters
+        ---------
+        other: Integer
+        
+        Examples
+        --------
+        >>> a = Integer(7)
+        >>> b = Integer(3)
+        >>> c = a / b
+        >>> print(c)
+        2
+        >>> d = b / a
+        >>> print(d)
+        0
+        """
+        if not(self.valid and other.valid):
+            return Integer(0, False)
+        if other.value == 0:
+            return Integer(0, False)
+        if self.value < other.value:
+            return Integer(0)
+        return Integer(int(self.value / other.value))
 
-    __div__ = __truediv__
-    __floordiv__ = __truediv__
+    __truediv__ = __div__
+    __floordiv__ = __div__
 
     def __pow__(self, other):
         pass
