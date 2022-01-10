@@ -26,12 +26,12 @@ class Node:
 
         if data < self._data:
             if self._left:
-                return self._left.display(data)
+                return self._left.search(data)
             else:
                 return False
         else:
             if self._right:
-                return self._right.display(data)
+                return self._right.search(data)
             else:
                 return False
 
@@ -53,13 +53,13 @@ class Node:
 
     def maxval(self) -> Any:
         if self._right:
-            return self._right.largest()
+            return self._right.maxval()
         else:
             return self._data
 
     def minval(self) -> Any:
         if self._left:
-            return self._left.smallest()
+            return self._left.minval()
         else:
             return self._data
 
@@ -112,9 +112,9 @@ class Node:
             else:
                 if self.left is None and self.right is None: # node children
                     if parent.left is self:
-                        parent.left = None
+                        parent._left = None
                     else:
-                        parent.right = None
+                        parent._right = None
                 else:
                     if self.left is None or self.right is None: # one child
                         if self.left:
@@ -124,12 +124,12 @@ class Node:
 
                         if parent.left is self:
                             temp = parent.left
-                            parent.left = node
+                            parent._left = node
                         else:
                             temp = parent.right
-                            parent.left = node
-                        temp.left = None
-                        temp.right = None
+                            parent._right = node
+                        temp._left = None
+                        temp._right = None
                     else:   # two children
                         if self.left.num_nodes() > self.right.num_nodes():
                             x = self.left.maxval()
@@ -162,21 +162,21 @@ class Node:
         self._preorder(container)
         return container
 
-    def display_postorder(self):
+    def display_postorder(self) -> None:
         if self.right:
             self.right.display_postorder()
         print(self.data)
         if self.left:
-            self.right.display_postorder()
+            self.left.display_postorder()
 
-    def _postorder(self, container:list):
+    def _postorder(self, container:list) -> None:
         if self.right:
             self.right._postorder(container)
         container.append(self.data)
         if self.left:
             self.left._postorder(container)
 
-    def postorder(self):
+    def postorder(self) -> list:
         container = list()
         self._postorder(container)
         return container
@@ -188,7 +188,7 @@ class BinarySearchTree:
     def __init__(self):
         self._root: Node = None
 
-    def display(self):
+    def display(self) -> None:
         """Print this BST."""
         if self._root:
             self._root.display()
@@ -232,29 +232,29 @@ class BinarySearchTree:
         else:
             print("Data not in the BST.")
 
-    def preorder(self) -> list:
-        if self._root:
-            return self._root.preorder()
-        else:
-            return []
-
     def display_preorder(self):
         if self._root:
             self._root.display_preorder()
         else:
             print("Empty BST.")
 
-    def postorder(self) -> list:
-        if self._root:
-            self._root.postorder()
-        else:
-            return []
-
     def display_postorder(self):
         if self._root:
             self._root.display_postorder()
         else:
             print("Empty BST.")
+
+    def preorder(self) -> list:
+        if self._root:
+            return self._root.preorder()
+        else:
+            return []
+
+    def postorder(self) -> list:
+        if self._root:
+            return self._root.postorder()
+        else:
+            return []
 
     def num_nodes(self):
         if self._root:
@@ -271,6 +271,8 @@ def _test():
         tree.insert(random.randrange(100))
 
     tree.display()
+    print("---", tree.preorder())
+    print("---", tree.postorder())
     print(f"{tree.num_nodes()} nodes in the BST")
 
     end = False
@@ -281,11 +283,11 @@ def _test():
         print("*" * 50)
         cmd = input(">> ")[0].lower()
         if cmd == "a" or cmd[0] == "r":
-            value = input(">> ")
+            value = int(input(">> "))
             print("-" * 50)
             if cmd == "a":
                 tree.insert(value)
-            if cmd == "s":
+            if cmd == "r":
                 tree.delete(value)
         if cmd == "i":
             print(tree.preorder())
