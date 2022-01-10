@@ -104,8 +104,27 @@ class Integer:
         """
         return self.__add__(other.__neg__())
 
-    def __mul__(self, other) -> "Integer":
-        pass
+    def __mul__(self, other: "Integer") -> "Integer":
+        """Overload the arithmetic multiplication binary operation for 
+        Integers.
+
+        Parameters
+        ----------
+        other: Integer
+
+        Examples
+        --------
+        >>> a = Integer(5)
+        >>> b = Integer(3)
+        >>> print(f"a={a!s}, b={b!s}")
+        a=5, b=3
+        >>> c = a * b
+        >>> print(c)
+        15
+        """
+        if self.valid and other.valid:
+            return Integer(self.value * other.value)
+        return Integer(0, False)
 
     def __truediv__(self, other) -> "Integer":
         pass
