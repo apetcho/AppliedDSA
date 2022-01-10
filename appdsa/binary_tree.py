@@ -178,9 +178,9 @@ class Node:
             self.left._postorder(container)
 
     def postorder(self):
-        """ container = list()
+        container = list()
         self._postorder(container)
-        return container """
+        return container
 
 
 class BinarySearchTree:
