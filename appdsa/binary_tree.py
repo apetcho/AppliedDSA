@@ -3,12 +3,20 @@ from typing import Any
 
 class Node:
     """Binary Tree node."""
+    __slots__ = "_data", "_left", "_right"
 
     def __init__(self, data: Any, left: "Node"=None, right: "Node"=None):
-        pass
+        self._data = data
+        self._left = left
+        self._right = right
 
     def display(self, indent=0):
-        pass
+        """Print this node and its children."""
+        if self._right:
+            self._right.display(indent+3)
+        print(f"{(' '*indent)} {self._data}")
+        if self._left:
+            self._left.display(indent+3)
 
     def search(self, data: Any):
         pass
@@ -26,13 +34,11 @@ class Node:
     def data(self):
         pass
 
-    @data.setter
-    def data(self, value):
-        pass
-
+    @property
     def left(self):
         pass
 
+    @property
     def right(self):
         pass
 
