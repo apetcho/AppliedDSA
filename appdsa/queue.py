@@ -16,9 +16,8 @@ class Queue:
             node = node.next
         return str(items)
 
-
     def is_empty(self):
-        pass
+        return (self._first is None)
 
     def enqueue(self, data):
         pass
