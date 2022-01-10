@@ -61,7 +61,24 @@ class Integer:
         return Integer(0, False)
 
     def __neg__(self) -> "Integer":
-        pass
+        """Negate the value of this Integer object value.
+        
+        Examples
+        --------
+        >>> a = Integer(3)
+        >>> repr(a)
+        Integer(value=3, valid=True)
+        >>> print(a)
+        3
+        >>> b = -a
+        >>> repr(b)
+        Integer(value=-3, valid=True)
+        >>> print(b)
+        -3
+        """
+        if self._valid:
+            return Integer(-self._value)
+        return Integer(0, False)
 
     def __sub__(self, other) -> "Integer":
         pass
