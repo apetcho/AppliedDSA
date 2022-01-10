@@ -209,8 +209,28 @@ class BinarySearchTree:
         else:
             self._root = Node(data)
 
-    def delete(self, data):
-        pass
+    def delete(self, data: Any) -> None:
+        """Delete a data from BST."""
+        if self.search(data):
+            if self._root.data == data:
+                if self._root.left:
+                    child = self._root.left
+                else:
+                    child = self._root.right
+
+                if child is None:
+                    self._root = None
+                else:
+                    if self._root.left:
+                        x = child.maxval()
+                    else:
+                        x = child.minval()
+                    self._root.delete(x)
+                    self._root.data = x
+            else:
+                self._root.delete(data)
+        else:
+            print("Data not in the BST.")
 
     def preorder(self):
         pass
