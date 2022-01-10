@@ -86,7 +86,33 @@ class Rational:
             return float(0)
 
     def __add__(self, other: "Rational") -> "Rational":
-        pass
+        """Overload binaray operation (+) for Rational objects.
+        
+        Parameters
+        ----------
+        other: Rational
+        
+        Examples
+        --------
+        >>> x = Rational(3, 7)
+        >>> y = Rational(9, 11)
+        >>> z = x + y
+        >>> print(f"({x!s}, {y!s}, {z!s})")
+        (3/7, 9/11, 96/77)
+        >>> x = Rational(3, 4)
+        >>> y = Rational(9, 8)
+        >>> z = x + y
+        >>> print(f"({x!s}, {y!s}, {z!s})")
+        (0.75, 1.125, 1.875)
+        """
+        if self.valid and other.valid:
+            a, b = self.numerator, self.denominator
+            p, q = other.numerator, other.denominator
+            num = a*q + b*p
+            den = b*q
+            return Rational(num, den)
+        else:
+            Rational(0, 1, False)
 
     def __neg__(self) -> "Rational":
         pass
