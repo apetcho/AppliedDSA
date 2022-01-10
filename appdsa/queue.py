@@ -20,7 +20,12 @@ class Queue:
         return (self._first is None)
 
     def enqueue(self, data):
-        pass
+        node = Node(data)
+        if self._first is None:
+            self._first = node
+        else: # XXX
+            self._first.next = node
+        self._last = node
 
     def dequeue(self):
         pass
