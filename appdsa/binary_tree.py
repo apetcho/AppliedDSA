@@ -139,8 +139,8 @@ class Node:
 
     def delete(self, data):
         """Delete a data from the BST."""
-        #parent = self.search_parent(data)
-        #self.delete_node(data, parent)
+        parent = self.search_parent(data)
+        self.delete_node(data, parent)
 
     def display_preorder(self):
         pass
