@@ -257,10 +257,10 @@ class BinarySearchTree:
             print("Empty BST.")
 
     def num_nodes(self):
-        """ if self._root:
+        if self._root:
             return self._root.num_nodes()
         else:
-            return 0 """
+            return 0
 
 
 def _test():
