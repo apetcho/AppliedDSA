@@ -175,7 +175,27 @@ class Rational:
             return Rational(0, 1, False)
 
     def __truediv__(self, other: "Rational") -> "Rational":
-        pass
+        """Overload the binary operator (/) for Rational objects.
+        
+        Examples
+        --------
+        >>> x = Rational(3, 7)
+        >>> y = Rational(5, 3)
+        >>> z = x / y
+        >>> print(f"x={x!s}, y={y!s}, z={z!s}")
+        x=3/7, y=5/3, z=9/35
+        >>> z = y / x
+        >>> print(f"x={x!s}, y={y!s}, z={z!s}")
+        x=3/7, y=5/3, z=35/9
+        """
+        if self.valid and other.valid:
+            a, b = self.numerator, self.denominator
+            p, q = other.numerator, other.denominator
+            num = a*q
+            den = b*p
+            return Rational(num, den)
+        else:
+            return Rational(0, 1, False)
 
     __div__ = __truediv__
 
