@@ -6,7 +6,10 @@ operations and a static method for computing the gcd of two Integers.
 from __future__ import division
 
 def gcd(a: int, b: int) -> int:
-    pass
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
 
 
 class Integer:
