@@ -28,7 +28,13 @@ class Stack:
         self._top = node
 
     def pop(self):
-        pass
+        if self._top is None:
+            return None
+        node = self._top
+        data = node.data
+        self._top = node.next
+        node = None
+        return data
 
 
 def _test():
