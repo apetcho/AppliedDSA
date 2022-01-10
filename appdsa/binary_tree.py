@@ -159,9 +159,9 @@ class Node:
             self.right._preorder(container)
 
     def preorder(self) -> list:
-        """ container = list()
+        container = list()
         self._preorder(container)
-        return container """
+        return container
 
     def display_postorder(self):
         """ if self.right:
