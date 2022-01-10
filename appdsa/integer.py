@@ -39,8 +39,26 @@ class Integer:
     def value(self):
         return self._value
 
-    def __add__(self, other) -> "Integer":
-        pass
+    def __add__(self, other: "Integer") -> "Integer":
+        """Return sum of two Integer object.
+        
+        Parameters
+        ----------
+        other: Integer
+        
+        Examples
+        --------
+        >>> a = Integer(3)
+        >>> b = Integer(2)
+        >>> c = a + b
+        >>> repr(c)
+        Integer(value=5, valid=True)
+        >>> print(c)
+        5
+        """
+        if self._valid and other._valid:
+            return Integer(self._value + other._value)
+        return Integer(0, False)
 
     def __neg__(self) -> "Integer":
         pass
