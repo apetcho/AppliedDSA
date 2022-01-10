@@ -1,7 +1,7 @@
 """Module containing a Rational class representing rational numbers."""
 from __future__ import division
 from typing import Union
-from integer import Integer as Integer_t
+from .integer import Integer as Integer_t 
 
 
 def check_int(value: int) -> bool:
@@ -21,7 +21,26 @@ class Rational:
     """Rational number class."""
 
     def __init__(self, num=0, den=1, valid=True):
-        pass
+        valid = valid and ((type(num)==int) or isinstance(num, Integer_t))
+        valid = valid and ((type(den)==int) or isinstance(den, Integer_t))
+        if valid:
+            if type(num) == int:
+                num = Integer_t(num)
+            if type(den) == int:
+                den = Integer_t(den)
+
+        valid = valid and num.valid and den.valid
+        self._valid = valid and (den.value != 0)
+
+        if self._valid:
+            if den.value < 0:
+                num, den = -num, -den
+            d = Integer_t.gcd(num, den)
+            self._num = num / d
+            self._den = den / d
+        else:
+            self._num = Integer_t(0)
+            self._den = Integer_t(1)
 
     @property
     def valid(self):
