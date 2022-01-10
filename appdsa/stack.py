@@ -23,7 +23,9 @@ class Stack:
         return (self._top is None)
 
     def push(self, data):
-        pass
+        node = Node(data)
+        node.next = self._top
+        self._top = node
 
     def pop(self):
         pass
