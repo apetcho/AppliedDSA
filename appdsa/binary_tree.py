@@ -171,11 +171,11 @@ class Node:
             self.right.display_postorder()
 
     def _postorder(self, container:list):
-        """ if self.right:
+        if self.right:
             self.right._postorder(container)
         container.append(self.data)
         if self.left:
-            self.left._postorder(container) """
+            self.left._postorder(container)
 
     def postorder(self):
         """ container = list()
