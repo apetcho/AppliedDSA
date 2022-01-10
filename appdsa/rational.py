@@ -200,7 +200,34 @@ class Rational:
     __div__ = __truediv__
 
     def __pow__(self, other: "Rational") -> "Rational":
-        pass
+        """Overload the binary operator (**) for Rational objects.
+        
+        Examples
+        --------
+        >>> x = Rational(5, 3)
+        >>> y = Rational(4, 2)
+        >>> z = x ** y
+        >>> z
+        Rational(num=25, den=9, valid=True)
+        >>> z = y ** x
+        >>> z
+        Rational(num=0, den=1, valid=False)
+        """
+        if self.valid and other.valid:
+            a, b = self.numerator, self.denominator
+            p, q = other.numerator, other.denominator
+            if(a.value == 0) and (p.value <= 0):
+                return Rational(0, 1, False)
+
+            if p.value < 0:
+                p, a, b  = -p, b, a
+            if b.value < 0:
+                a, b = -a, -b
+
+            if q.value == 1:
+                return Rational(a**p, b**p)
+
+        return Rational(0, 1, False)
 
     def __eq__(self, other: "Rational") -> "Rational":
         pass
