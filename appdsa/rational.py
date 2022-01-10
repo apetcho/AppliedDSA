@@ -61,7 +61,12 @@ class Rational:
         pass
 
     def __float__(self) -> float:
-        pass
+        """Return the representation of Ration in floating point form."""
+        if self.valid:
+            x, y = self.numerator.value, self.denominator.value
+            return float(x)/float(y)
+        else:
+            return float(0)
 
     def __add__(self, other: "Rational") -> "Rational":
         pass
