@@ -4,12 +4,7 @@ The Integer class emulate the integers by implementing basic arithmetic
 operations and a static method for computing the gcd of two Integers.
 """
 from __future__ import division
-
-def gcd(a: int, b: int) -> int:
-    if b == 0:
-        return a
-    else:
-        return gcd(b, a % b)
+from typing import Union
 
 
 class Integer:
@@ -205,4 +200,16 @@ class Integer:
 
     @staticmethod
     def gcd(a: "Integer", b: "Integer") -> "Integer":
-        pass
+        """Return the gcd of two Integer objects."""
+        if a.valid and b.valid:
+            return Integer(gcd(abs(a.value), abs(b.value)))
+        return Integer(0, False)
+
+
+def gcd(a: Union[int, Integer], b: Union[int, Integer]) -> int:
+    a = a.value if isinstance(a, Integer) else a
+    b = b.value if isinstance(b, Integer) else b
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
