@@ -205,6 +205,24 @@ class Integer:
             return Integer(gcd(abs(a.value), abs(b.value)))
         return Integer(0, False)
 
+    def __eq__(self, other: "Integer") -> bool:
+        """Overload == binary logical operator for Integer 
+        
+        Exaamples
+        ---------
+        >>> a = Integer(3)
+        >>> b = Integer(3)
+        >>> a == b
+        True
+        >>> b = Integer(2)
+        >>> a == b
+        False
+        """
+        if self.valid and other.valid:
+            return self.value == other.value
+        else:
+            raise ValueError("Invalid operand for == operator")
+
 
 def gcd(a: Union[int, Integer], b: Union[int, Integer]) -> int:
     a = a.value if isinstance(a, Integer) else a
