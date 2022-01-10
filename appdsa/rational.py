@@ -139,7 +139,20 @@ class Rational:
             Rational(0, 1, False)
 
     def __sub__(self, other: "Rational") -> "Rational":
-        pass
+        """Overload binary operator (-) for Rational class.
+        
+        Examples
+        --------
+        >>> x = Rational(3, 7)
+        >>> y = Rational(21, 3)
+        >>> z = x - y
+        >>> print(f"x={x!s}, y={y!s}, z={z!s}")
+        x=3/7, y=7, z=-46/7
+        >>> z = y - x
+        >>> print(f"x={x!s}, y={y!s}, z={z!s}")
+        x=3/7, y=7, z=46/7
+        """
+        return self.__add__(other.__neg__())
 
     def __mul__(self, other: "Rational") -> "Rational":
         pass
