@@ -2,6 +2,7 @@
 
 class Node:
     """Singly linked list node."""
+    __slots__ = "_data", "_next"
 
     def __init__(self, data=None, next=None):
         self._data = data
@@ -11,7 +12,7 @@ class Node:
         return str(self._data)
 
     def __repr__(self):
-        return "Node({0}, {1!s})".format(self._data, self._next)
+        return "Node({0}, {1!r})".format(self._data, self._next)
 
     @property
     def data(self):
