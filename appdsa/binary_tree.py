@@ -239,7 +239,10 @@ class BinarySearchTree:
             return []
 
     def display_preorder(self):
-        pass
+        if self._root:
+            self._root.display_preorder()
+        else:
+            print("Empty BST.")
 
     def postorder(self):
         pass
