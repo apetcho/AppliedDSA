@@ -55,7 +55,15 @@ class Rational:
         return self._den
 
     def __str__(self) -> str:
-        pass
+        """Return the string representation of Rational object."""
+        if self.valid:
+            if self.denominator.value == 1:
+                return str(self.numerator)
+            if check_int(self.denominator.value):
+                return str(self.__float__())
+            else:
+                return str(self.numerator) + "/" + str(self.denominator)
+        return "---[Invalid Rational Object]---"
 
     def __repr__(self) -> str:
         pass
