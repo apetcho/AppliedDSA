@@ -72,7 +72,7 @@ class Node:
 
     @property
     def right(self) -> "Node":
-        pass
+        return self._right
 
     def num_nodes(self):
         pass
