@@ -189,7 +189,11 @@ class BinarySearchTree:
         self._root: Node = None
 
     def display(self):
-        pass
+        """Print this BST."""
+        if self._root:
+            self._root.display()
+        else:
+            print("Empty BST")
 
     def search(self, data):
         pass
