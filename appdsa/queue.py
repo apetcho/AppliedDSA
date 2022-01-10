@@ -3,6 +3,7 @@ from .snode import Node
 
 class Queue:
     """Queue Data Structure."""
+    __slots__ = "_first", "_last"
 
     def __init__(self):
         self._first : Node = None
