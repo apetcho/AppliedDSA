@@ -244,8 +244,11 @@ class BinarySearchTree:
         else:
             print("Empty BST.")
 
-    def postorder(self):
-        pass
+    def postorder(self) -> list:
+        if self._root:
+            self._root.postorder()
+        else:
+            return []
 
     def display_postorder(self):
         pass
