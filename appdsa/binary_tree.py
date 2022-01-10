@@ -35,7 +35,20 @@ class Node:
                 return False
 
     def insert(self, data: Any):
-        pass
+        """Insert a data into the tree at appropriate node."""
+        if data != self._data:
+            if data < self._data:
+                if self._left:
+                    self._left.insert(data)
+                else:
+                    self._left = Node(data)
+            else:
+                if self._right:
+                    self._right.insert(data)
+                else:
+                    self._right = Node(data)
+        else:
+            print("No duplicate in a binary search tree")
 
     def largest(self):
         pass
