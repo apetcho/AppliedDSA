@@ -308,4 +308,24 @@ class Rational:
             raise ValueError("Invalid operands for operator (<=) ")
 
     def __ge__(self, other: "Rational") -> bool:
-        pass
+        """Overload the binary operator (>=) for Rational class.
+        
+        Examples
+        --------
+        >>> x = Rational(2, 3)
+        >>> y = Rational(3, 5)
+        >>> z = Rational(6, 10)
+        >>> x >= y
+        True
+        >>> y >= x
+        False
+        >>> y >= z
+        True
+        """
+        if self.valid and other.valid:
+            x, y = float(self), float(other)
+            return x >= y
+        else:
+            raise ValueError("Invalid operands for operator (>=) ")
+
+    
