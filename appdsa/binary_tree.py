@@ -78,8 +78,14 @@ class Node:
     def right(self) -> "Node":
         return self._right
 
-    def num_nodes(self):
-        pass
+    def num_nodes(self) -> int:
+        """Return the number of node in the BST."""
+        n = 1
+        if self._left:
+            n = n + self._left.num_nodes()
+        if self._right:
+            n = n + self._right.num_nodes()
+        return n
 
     def search_parent(self, data):
         pass
