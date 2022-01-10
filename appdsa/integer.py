@@ -17,7 +17,19 @@ class Integer:
         self._value = value if self._valid else 0
 
     def __str__(self) -> str:
-        pass
+        """Return a string representation of Integer object"""
+        if self._valid:
+            return f"{self._value}"
+        return "--[Invalid integer]--"
+
+    def __repr__(self) -> str:
+        """Return a repr string form of Integer object."""
+        retval = None
+        if self._valid:
+            retval = rf"Integer(value={self._value}, valid=True)"
+        else:
+            retval = r"Integer(value=0, valid=False)"
+        return retval
 
     @property
     def valid(self):
