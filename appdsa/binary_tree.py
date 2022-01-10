@@ -64,7 +64,7 @@ class Node:
 
     @property
     def data(self):
-        pass
+        return self._data
 
     @property
     def left(self):
