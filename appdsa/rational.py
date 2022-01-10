@@ -115,7 +115,28 @@ class Rational:
             Rational(0, 1, False)
 
     def __neg__(self) -> "Rational":
-        pass
+        """Overload the negation unary operator.
+        
+        Examples
+        --------
+        >>> x = Rational(3, 4)
+        >>> print(x)
+        0.75
+        >>> x = -x
+        >>> print(x)
+        -0.75
+        >>> x = Rational(4, 3)
+        >>> print(x)
+        4/3
+        >>> x = -x
+        >>> print(x)
+        -4/3
+        """
+        if self.valid:
+            num, den = self.numerator, self.denominator
+            return Rational(-num, den)
+        else:
+            Rational(0, 1, False)
 
     def __sub__(self, other: "Rational") -> "Rational":
         pass

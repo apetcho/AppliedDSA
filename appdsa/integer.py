@@ -146,8 +146,12 @@ class Integer:
             return Integer(0, False)
         if other.value == 0:
             return Integer(0, False)
-        if self.value < other.value:
-            return Integer(0)
+        if self.value % other.value != 0:
+            if self.value < other.value:
+                return Integer(0)
+            if self.value > other.value:
+                return Integer(int(self.value/other.value))
+            return Integer(0, False)
         return Integer(int(self.value / other.value))
 
     __truediv__ = __div__
