@@ -36,7 +36,7 @@ def num_floor(value: float) -> int:
 
 
 def num_fractional_part(value: float) -> float:
-    """Return the fractional part of a floating point value in mathematical
+    """Return the fractional part of a floating point number in mathematical
     sens.
     
     Parameters
@@ -51,3 +51,16 @@ def num_fractional_part(value: float) -> float:
     0.1
     """
     return value - num_floor(value)
+
+
+def num_decimal_part(value: float) -> float:
+    """Return the decimal part of a floating point number.
+    
+    Parameters
+    ----------
+    >>> num_decimal_part(-2.1)
+    -0.1
+    >>> num_decimal_part(2.1)
+    0.1
+    """
+    return value - num_truncate(value)
