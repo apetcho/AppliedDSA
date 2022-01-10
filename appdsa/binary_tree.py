@@ -18,8 +18,21 @@ class Node:
         if self._left:
             self._left.display(indent+3)
 
-    def search(self, data: Any):
-        pass
+    def search(self, data: Any) -> bool:
+        """Search data in the chain of nodes."""
+        if data == self._data:
+            return True
+
+        if data < self._data:
+            if self._left:
+                return self._left.display(data)
+            else:
+                return False
+        else:
+            if self._right:
+                return self._right.display(data)
+            else:
+                return False
 
     def insert(self, data: Any):
         pass
