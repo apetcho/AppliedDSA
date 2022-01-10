@@ -155,7 +155,24 @@ class Rational:
         return self.__add__(other.__neg__())
 
     def __mul__(self, other: "Rational") -> "Rational":
-        pass
+        """Overload the binary operator (*) for Rational class.
+        
+        Examples
+        --------
+        >>> x = Rational(3, 11)
+        >>> y = Rational(2, 3)
+        >>> z = x * y
+        >>> print(f"x={x!s}, y={y!s}, z={z!s}")
+        x=3/11, y=2/3, z=2/11
+        """
+        if self.valid and other.valid:
+            a, b = self.numerator, self.denominator
+            p, q = other.numerator, other.denominator
+            num = a * p
+            den = b * q
+            return Rational(num, den)
+        else:
+            return Rational(0, 1, False)
 
     def __truediv__(self, other: "Rational") -> "Rational":
         pass
