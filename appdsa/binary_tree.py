@@ -251,10 +251,16 @@ class BinarySearchTree:
             return []
 
     def display_postorder(self):
-        pass
+        if self._root:
+            self._root.display_postorder()
+        else:
+            print("Empty BST.")
 
     def num_nodes(self):
-        pass
+        """ if self._root:
+            return self._root.num_nodes()
+        else:
+            return 0 """
 
 
 def _test():
