@@ -241,6 +241,43 @@ class Integer:
         else:
             raise ValueError("Invalid operands for != operator")
 
+    def __lt__(self, other: "Integer") -> bool:
+        """Overload < operator.
+        
+        Examples
+        --------
+        >>> a = Integer(4)
+        >>> b = Integer(3)
+        >>> a < b
+        False
+        >>> b < a
+        True
+        """
+        if self.valid and other.valid:
+            return self.value < other.value
+        else:
+            raise ValueError("Invalid operand for < operator")
+
+    def __le__(self, other: "Integer") -> bool:
+        """Overload <= operator.
+        
+        Examples
+        --------
+        >>> a = Integer(4)
+        >>> b = Integer(3)
+        >>> c = Integer(4)
+        >>> a <= b
+        False
+        >>> a <= c
+        True
+        >>> b <= c
+        True
+        """
+        if self.valid and other.valid:
+            return self.__lt__(other) or self.__eq__(other)
+        else:
+            raise ValueError("Invalid operands for <= operators")
+
 
 def gcd(a: Union[int, Integer], b: Union[int, Integer]) -> int:
     a = a.value if isinstance(a, Integer) else a
