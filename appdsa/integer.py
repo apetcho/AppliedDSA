@@ -33,7 +33,7 @@ class Integer:
 
     @property
     def valid(self):
-        pass
+        return self._valid
 
     @property
     def value(self):
