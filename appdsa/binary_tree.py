@@ -66,6 +66,10 @@ class Node:
     def data(self) -> Any:
         return self._data
 
+    @data.setter
+    def data(self, value):
+        self._data = value
+
     @property
     def left(self) -> "Node":
         return self._left
