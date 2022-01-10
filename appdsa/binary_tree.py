@@ -63,15 +63,15 @@ class Node:
             return self._data
 
     @property
-    def data(self):
+    def data(self) -> Any:
         return self._data
 
     @property
-    def left(self):
-        pass
+    def left(self) -> "Node":
+        return self._left
 
     @property
-    def right(self):
+    def right(self) -> "Node":
         pass
 
     def num_nodes(self):
