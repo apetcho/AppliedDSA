@@ -80,8 +80,29 @@ class Integer:
             return Integer(-self._value)
         return Integer(0, False)
 
-    def __sub__(self, other) -> "Integer":
-        pass
+    def __sub__(self, other: "Integer") -> "Integer":
+        """Oveload arithmetic substraction binary operation on two Integers.
+
+        Parameters
+        ----------
+        other: Integer
+
+        Examples
+        --------
+        >>> a = Integer(5)
+        >>> print(a)
+        5
+        >>> b = Integer(3)
+        >>> print(b)
+        3
+        >>> c = a - b
+        >>> print(c)
+        2
+        >>> d = b - a
+        >>> print(d)
+        -2
+        """
+        return self.__add__(other.__neg__())
 
     def __mul__(self, other) -> "Integer":
         pass
