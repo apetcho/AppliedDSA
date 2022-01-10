@@ -15,11 +15,11 @@ class Node:
 
     @property
     def data(self):
-        pass
+        return self._data
 
     @data.setter
     def data(self, value):
-        pass
+        self._data = value
 
     @property
     def next(self):
