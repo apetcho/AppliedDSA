@@ -1,7 +1,6 @@
 """An Implementation of Binary Tree."""
 from typing import Any
 
-from matplotlib import container
 
 class Node:
     """Binary Tree node."""
@@ -187,7 +186,7 @@ class BinarySearchTree:
     """Binary Search Tree class."""
 
     def __init__(self):
-        pass
+        self._root: Node = None
 
     def display(self):
         pass
