@@ -195,8 +195,12 @@ class BinarySearchTree:
         else:
             print("Empty BST")
 
-    def search(self, data):
-        pass
+    def search(self, data: Any) -> bool:
+        """Search data in the BST."""
+        if self._root:
+            return self._root.search(data)
+        else:
+            return False
 
     def insert(self, data):
         pass
