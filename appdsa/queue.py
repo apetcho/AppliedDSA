@@ -16,6 +16,8 @@ class Queue:
             node = node.next
         return str(items)
 
+    __repr__ = __str__
+
     def is_empty(self):
         return (self._first is None)
 
@@ -23,8 +25,8 @@ class Queue:
         node = Node(data)
         if self._first is None:
             self._first = node
-        else: # XXX
-            self._first.next = node
+        else:
+            self._last.next = node
         self._last = node
 
     def dequeue(self):
@@ -35,3 +37,14 @@ class Queue:
         self._first = node.next
         node = None
         return data
+
+
+if __name__ == "__main__":
+    q = Queue()
+    q.enqueue("GNU")
+    q.enqueue("is")
+    q.enqueue("not")
+    q.enqueue("UNIX")
+    print(q)
+    while not q.is_empty():
+        print(q.dequeue())
