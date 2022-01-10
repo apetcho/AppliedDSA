@@ -52,7 +52,7 @@ class Rational:
 
     @property
     def denominator(self):
-        pass
+        return self._den
 
     def __str__(self) -> str:
         pass
