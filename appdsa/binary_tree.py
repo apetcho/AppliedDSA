@@ -202,8 +202,12 @@ class BinarySearchTree:
         else:
             return False
 
-    def insert(self, data):
-        pass
+    def insert(self, data: Any) -> None:
+        """Insert data into the BST."""
+        if self._root:
+            self._root.insert(data)
+        else:
+            self._root = Node(data)
 
     def delete(self, data):
         pass
