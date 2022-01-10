@@ -143,7 +143,11 @@ class Node:
         self.delete_node(data, parent)
 
     def display_preorder(self):
-        pass
+        if self.left:
+            self.left.display_preorder()
+        print(self.data)
+        if self.right:
+            self.right.display_preorder()
 
     def _preorder(self, container):
         pass
