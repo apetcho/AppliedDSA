@@ -4,12 +4,18 @@ from .snode import Node
 
 class Stack:
     """Stack data structure."""
+    __slots__ = ("_top",)
 
     def __init__(self):
         self._top: Node = None
 
     def __str__(self):
-        pass
+        items = []
+        node = self._top
+        while not(node is None):
+            items.append(node.data)
+            node = node.next
+        return str(items)
 
     __repr__ = __str__
 
