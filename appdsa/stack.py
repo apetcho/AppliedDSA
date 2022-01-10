@@ -20,7 +20,7 @@ class Stack:
     __repr__ = __str__
 
     def is_empty(self):
-        pass
+        return (self._top is None)
 
     def push(self, data):
         pass
