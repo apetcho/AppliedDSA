@@ -232,8 +232,11 @@ class BinarySearchTree:
         else:
             print("Data not in the BST.")
 
-    def preorder(self):
-        pass
+    def preorder(self) -> list:
+        if self._root:
+            return self._root.preorder()
+        else:
+            return []
 
     def display_preorder(self):
         pass
