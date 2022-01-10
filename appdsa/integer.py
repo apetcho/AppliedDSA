@@ -221,7 +221,25 @@ class Integer:
         if self.valid and other.valid:
             return self.value == other.value
         else:
-            raise ValueError("Invalid operand for == operator")
+            raise ValueError("Invalid operands for == operator")
+
+    def __ne__(self, other: "Integer") -> bool:
+        """Overload != logical operator.
+        
+        Examples
+        --------
+        >>> a = Integer(3)
+        >>> b = Integer(3)
+        >>> a != b
+        False
+        >>> b = Integer(2)
+        >>> a != b
+        True
+        """
+        if self.valid and other.valid:
+            return self.value != other.value
+        else:
+            raise ValueError("Invalid operands for != operator")
 
 
 def gcd(a: Union[int, Integer], b: Union[int, Integer]) -> int:
