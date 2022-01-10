@@ -278,6 +278,23 @@ class Integer:
         else:
             raise ValueError("Invalid operands for <= operators")
 
+    def __gt__(self, other: "Integer") -> bool:
+        """Overload > operator.
+        
+        Examples
+        --------
+        >>> a = Integer(4)
+        >>> b = Integer(3)
+        >>> a > b
+        True
+        >>> b > a
+        False
+        """
+        if self.valid and other.valid:
+            return self.value > other.value
+        else:
+            raise ValueError("Invalid operands for > operator")
+
 
 def gcd(a: Union[int, Integer], b: Union[int, Integer]) -> int:
     a = a.value if isinstance(a, Integer) else a
