@@ -50,13 +50,13 @@ class Node:
         else:
             print("No duplicate in a binary search tree")
 
-    def largest(self):
+    def maxval(self):
         if self._right:
             return self._right.largest()
         else:
             return self._data
 
-    def smallest(self):
+    def minval(self):
         if self._left:
             return self._left.smallest()
         else:
