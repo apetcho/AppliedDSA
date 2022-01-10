@@ -102,11 +102,45 @@ class Node:
             else:
                 return self._right.search_parent(data)  # continue the search
 
-    def delete_node(self, data, parent):
-        pass
+    def delete_node(self, data, parent: "Node"):
+        if data < self.data:
+            self.left.delete_node(data, parent)
+        else:
+            if data > self.data:
+                self.right.delete_node(data, parent)
+            else:
+                if self.left is None and self.right is None: # node children
+                    if parent.left is self:
+                        parent.left = None
+                    else:
+                        parent.right = None
+                else:
+                    if self.left is None or self.right is None: # one child
+                        if self.left:
+                            node = self.left
+                        else:
+                            node = self.right
+
+                        if parent.left is self:
+                            temp = parent.left
+                            parent.left = node
+                        else:
+                            temp = parent.right
+                            parent.left = node
+                        temp.left = None
+                        temp.right = None
+                    else:   # two children
+                        if self.left.num_nodes() > self.right.num_nodes():
+                            x = self.left.maxval()
+                        else:
+                            x = self.right.minval()
+                        self.delete(x)
+                        self.data = x 
 
     def delete(self, data):
-        pass
+        """Delete a data from the BST."""
+        #parent = self.search_parent(data)
+        #self.delete_node(data, parent)
 
     def display_preorder(self):
         pass
