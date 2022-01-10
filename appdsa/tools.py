@@ -33,3 +33,21 @@ def num_floor(value: float) -> int:
     """
     value = (value - 1) if value < 0 else value
     return int(value)
+
+
+def num_fractional_part(value: float) -> float:
+    """Return the fractional part of a floating point value in mathematical
+    sens.
+    
+    Parameters
+    ----------
+    value: float
+    
+    Examples
+    --------
+    >>> num_fractional_part(-2.1)
+    0.9
+    >>> num_fractional_part(2.1)
+    0.1
+    """
+    return value - num_floor(value)
