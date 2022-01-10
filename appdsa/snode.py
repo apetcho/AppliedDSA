@@ -23,8 +23,8 @@ class Node:
 
     @property
     def next(self):
-        pass
+        return self._next
 
     @next.setter
     def next(self, link):
-        pass
+        self._next = link
