@@ -37,7 +37,7 @@ class Integer:
 
     @property
     def value(self):
-        pass
+        return self._value
 
     def __add__(self, other) -> "Integer":
         pass
