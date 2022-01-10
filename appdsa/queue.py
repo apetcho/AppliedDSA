@@ -28,4 +28,10 @@ class Queue:
         self._last = node
 
     def dequeue(self):
-        pass
+        if self._first is None:
+            return None
+        node = self._first
+        data = node.data
+        self._first = node.next
+        node = None
+        return data
