@@ -48,7 +48,7 @@ class Rational:
 
     @property
     def numerator(self):
-        pass
+        return self._num
 
     @property
     def denominator(self):
