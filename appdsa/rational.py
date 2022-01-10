@@ -66,7 +66,16 @@ class Rational:
         return "---[Invalid Rational Object]---"
 
     def __repr__(self) -> str:
-        pass
+        retval = ""
+        if self.valid:
+            retval = ("Rational(num={0}, den={1}, valid=True)".format(
+                self.numerator, self.denominator
+            ))
+        else:
+            retval = ("Rational(num={0}, den={1}, valid=False)".format(
+                self.numerator, self.denominator
+            ))
+        return retval
 
     def __float__(self) -> float:
         """Return the representation of Ration in floating point form."""
