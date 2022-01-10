@@ -4,8 +4,17 @@ from typing import Union
 from integer import Integer as Integer_t
 
 
-def check_int(value: int):
-    pass
+def check_int(value: int) -> bool:
+    """Check whether value can be written as 2^p * 5^q where p and q are
+    natural numbers."""
+    if value == 1:
+        return True
+    else:
+        if value % 2 == 0:
+            return check_int(value//2)
+        if value % 5 == 0:
+            return check_int(value//5)
+    return False
 
 
 class Rational:
