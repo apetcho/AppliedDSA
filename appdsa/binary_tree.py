@@ -57,7 +57,10 @@ class Node:
             return self._data
 
     def smallest(self):
-        pass
+        if self._left:
+            return self._left.smallest()
+        else:
+            return self._data
 
     @property
     def data(self):
