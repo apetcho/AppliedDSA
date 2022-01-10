@@ -229,17 +229,33 @@ class Rational:
 
         return Rational(0, 1, False)
 
-    def __eq__(self, other: "Rational") -> "Rational":
+    def __eq__(self, other: "Rational") -> bool:
+        """Overload the binary operator (==) for Rational class.
+
+        Examples
+        --------
+        >>> x = Rational(3, 2)
+        >>> y = Rational(9, 6)
+        >>> z = Rational(2, 3)
+        >>> x == y
+        True
+        >>> x == z
+        False
+        """
+        if self.valid and other.valid:
+            return ((self.numerator == other.numerator) and
+                (self.denominator == other.denominator))
+        else:
+            raise ValueError("Invalid operand for operator ==")
+
+    def __lt__(self, other: "Rational") -> bool:
         pass
 
-    def __lt__(self, other: "Rational") -> "Rational":
+    def __gt__(self, other: "Rational") -> bool:
         pass
 
-    def __gt__(self, other: "Rational") -> "Rational":
+    def __le__(self, other: "Rational") -> bool:
         pass
 
-    def __le__(self, other: "Rational") -> "Rational":
-        pass
-
-    def __ge__(self, other: "Rational") -> "Rational":
+    def __ge__(self, other: "Rational") -> bool:
         pass
