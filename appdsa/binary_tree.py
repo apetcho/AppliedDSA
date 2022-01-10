@@ -264,7 +264,37 @@ class BinarySearchTree:
 
 
 def _test():
-    pass
+    """Test"""
+    import random
+    tree = BinarySearchTree()
+    for _ in range(10):
+        tree.insert(random.randrange(100))
+
+    tree.display()
+    print(f"{tree.num_nodes()} nodes in the BST")
+
+    end = False
+    while not end:
+        print("*" * 50)
+        print("(a) Add, or (i) Preorder  or (d) Postorder ")
+        print("or (r) Remove or (q) Quit?")
+        print("*" * 50)
+        cmd = input(">> ")[0].lower()
+        if cmd == "a" or cmd[0] == "r":
+            value = input(">> ")
+            print("-" * 50)
+            if cmd == "a":
+                tree.insert(value)
+            if cmd == "s":
+                tree.delete(value)
+        if cmd == "i":
+            print(tree.preorder())
+        if cmd == "d":
+            print(tree.postorder())
+        if cmd == "q":
+            end = True
+        if cmd not in "aidrq":
+            print("Valid input commands are: 'a', 'i', 'd', 'r' or 'q'")
 
 
 if __name__ == "__main__":
