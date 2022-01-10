@@ -10,7 +10,7 @@ class Node:
         self._left = left
         self._right = right
 
-    def display(self, indent=0):
+    def display(self, indent=0) -> None:
         """Print this node and its children."""
         if self._right:
             self._right.display(indent+3)
@@ -34,7 +34,7 @@ class Node:
             else:
                 return False
 
-    def insert(self, data: Any):
+    def insert(self, data: Any) -> None:
         """Insert a data into the tree at appropriate node."""
         if data != self._data:
             if data < self._data:
@@ -50,13 +50,13 @@ class Node:
         else:
             print("No duplicate in a binary search tree")
 
-    def maxval(self):
+    def maxval(self) -> Any:
         if self._right:
             return self._right.largest()
         else:
             return self._data
 
-    def minval(self):
+    def minval(self) -> Any:
         if self._left:
             return self._left.smallest()
         else:
@@ -87,8 +87,20 @@ class Node:
             n = n + self._right.num_nodes()
         return n
 
-    def search_parent(self, data):
-        pass
+    def search_parent(self, data) -> "Node":
+        if data == self._data: # root node
+            return None
+
+        if data < self._data:   # Maybe in the left subtree
+            if self._left.data == data:
+                return self     # this node is the parent node
+            else:
+                return self._left.search_parent(data)   # continue the search
+        else:                   # Maybe in the right subtree
+            if self._right.data == data:
+                return self     # this node is the parent node
+            else:
+                return self._right.search_parent(data)  # continue the search
 
     def delete_node(self, data, parent):
         pass
