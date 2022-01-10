@@ -268,7 +268,23 @@ class Rational:
             raise ValueError("Invalid operands for operator (<) ")
 
     def __gt__(self, other: "Rational") -> bool:
-        pass
+        """Overload the binary operator (>) for Rational class.
+        
+        Examples
+        --------
+        >>> x = Rational(2, 3)
+        >>> y = Rational(3, 5)
+        >>> x > y
+        True
+        >>> y > x
+        False
+        """
+        if self.valid and other.valid:
+            x = float(self)
+            y = float(other)
+            return x > y
+        else:
+            raise ValueError("Invalid operands for operator (>)")
 
     def __le__(self, other: "Rational") -> bool:
         pass
