@@ -155,8 +155,50 @@ class Integer:
     __truediv__ = __div__
     __floordiv__ = __div__
 
-    def __pow__(self, other):
-        pass
+    def __pow__(self, other: "Integer") -> "Integer":
+        """Overload the arithmetic power (**) for Integer object.
+        
+        Parameters
+        ----------
+        other: Integer
+
+        Examples
+        --------
+        >>> a = Integer(3)
+        >>> b = Integer(2)
+        >>> c = a ** b
+        >>> print(c)
+        9
+        >>> c = b ** a
+        >>> print(c)
+        8
+        >>> b = Integer(-2)
+        >>> c = a ** b
+        >>> print(c)
+        0
+        >>> c = b ** a
+        -8
+        """
+        if not(self.valid and other.valid):
+            return Integer(0, False)
+        x = self.value
+        n = other.value
+        if x == 0:
+            if n <= 0:
+                return Integer(0, False)
+            else:
+                return Integer()
+
+        if n < 0:
+            return Integer()
+
+        retval = 1
+        while n > 0:
+            if n % 2 == 1:
+                retval *= x
+            n //= 2
+            x *= x
+        return Integer(retval)
 
     @staticmethod
     def gcd(a: "Integer", b: "Integer") -> "Integer":
