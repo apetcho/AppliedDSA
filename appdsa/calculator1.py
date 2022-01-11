@@ -253,8 +253,9 @@ class Application:
         self._calculate("3/7 - 2/7 : (5 : 14)")
 
     def _read_expr(self) -> str:
-        print("------")
+        print("------------------------------------------------------")
         print("Next calculation (leave empty and press ENTER to quit)")
+        print("------------------------------------------------------")
         return input("calc>> ")
 
     def _mainloop(self):
@@ -264,7 +265,7 @@ class Application:
             expr = self._read_expr()
 
     def __call__(self):
-        pass
+        self._mainloop()
 
 
 def main():
