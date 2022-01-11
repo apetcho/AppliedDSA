@@ -62,8 +62,16 @@ class Expression:
         self.evaluate()
         return self._value
 
-    def evaluate(self):
-        pass
+    def evaluate(self) -> None:
+        self._ch = self.next()
+        if self._ch == "{":
+            self._ch = self.next()
+            self._value = self.expr()
+            self._ch = self.next()
+            if self._ch != "}":
+                self.error(2)       # missing one "}"
+        else:
+            self.error(1)           # missing one "}"
 
     def next(self):
         pass
