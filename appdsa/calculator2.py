@@ -239,7 +239,7 @@ class Application:
             expr = self._read_expr()
 
     def __call__(self):
-        pass
+        self._mainloop()
 
 
 def main():
