@@ -133,8 +133,18 @@ class Expression:
         return term
 
 
-    def expr2(self):
-        pass
+    def expr2(self) -> Union[float, int, Rational]:
+        """expr2 := '-' expr3 | expr3 """
+        if self.error_exists():
+            return 0
+        negate = False
+        while self._ch == "-":
+            negate = not negate
+            self._ch = self.next()
+        term = self.expr3()
+        if negate:
+            return -term
+        return term
 
     def expr3(self):
         pass
