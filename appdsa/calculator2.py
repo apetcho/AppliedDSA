@@ -36,7 +36,7 @@ class Expression:
         self._error = 0
         self._value = 0
 
-    def __str__(self):
+    def __str__(self) -> str:
         retval = ""
         for ch in self._src:
             if not str.isspace(ch):
@@ -45,12 +45,14 @@ class Expression:
 
     __repr__ = __str__
 
-    def error(self, err: int):
+    def error(self, err: int) -> None:
         if self._error == 0:
             self._error = err
 
-    def error_exists(self):
-        pass
+    def error_exists(self) -> bool:
+        if self._error == 0:
+            return False
+        return True
 
     def no_error(self):
         pass
