@@ -225,8 +225,11 @@ class Application:
         print(f"Result .......... : {self._expr.value()}")
 
 
-    def _read_expr(self):
-        pass
+    def _read_expr(self) -> str:
+        print("------------------------------------------------------")
+        print("Next calculation (leave empty and press ENTER to quit)")
+        print("------------------------------------------------------")
+        return input("calc2>> ")
 
     def _mainloop(self):
         pass
