@@ -1,6 +1,7 @@
 """Simple arithmetic calculator using rational.py module and a binary tree."""
 import re
 import string
+from turtle import left
 from .rational import Rational
 
 
@@ -162,7 +163,11 @@ class ExpressionTree:
             self._root = self._stack.pop(-1)
 
     def new_operation(self):
-        pass
+        top = self._operators.pop(-1)
+        right = self._stack.pop(-1)
+        left = self._stack.pop(-1)
+        node = TermNode(top, left, right)
+        self._stack.append(node)
 
     def priority(self, op: str):
         pass
