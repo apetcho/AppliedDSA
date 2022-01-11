@@ -160,8 +160,24 @@ class Expression:
             term = term ** k
         return term
 
-    def expr4(self):
-        pass
+    def expr4(self) -> Union[float, int, Rational]:
+        """expr4 ::= <natural> | "(" expr ")" """
+        if self.error_exists():
+            return 0
+        if str.isdigit(self._ch):
+            term = self.natural()
+            return Rational(int(term))
+        if self._ch == "(":
+            self._ch = self.next()
+            term = self.expr()
+            self._ch = self.next()
+            if self._ch == ")":
+                return term
+            else:
+                self.error(10)      # missing ")"
+        else:
+            self.error(9)           # missing "("
+        return 0
 
     def natural(self):
         pass
