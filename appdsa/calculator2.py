@@ -179,8 +179,15 @@ class Expression:
             self.error(9)           # missing "("
         return 0
 
-    def natural(self):
-        pass
+    def natural(self) -> int:
+        """natural ::= "(" '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9' ")" """
+        n = int(self._ch)
+        x = self.next_read()
+        while str.isdigit(x):
+            n = n * 10 + int(x)
+            self._ch = self.next()
+            x = self.next_read()
+        return n
 
 
 class Application:
