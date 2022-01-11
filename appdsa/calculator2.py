@@ -93,8 +93,10 @@ class Expression:
                 return token
         return '\0'
 
-    def is_next(self):
-        pass
+    def is_next(self, token) -> bool:
+        if self.next_read() == token:
+            return True
+        return False
 
     def expr(self):
         pass
