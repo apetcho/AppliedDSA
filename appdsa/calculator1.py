@@ -183,8 +183,7 @@ class ExpressionTree:
         return self._root.make_prefix_expr()
 
     def infix(self) -> str:
-        #return simplify_parenthesis(self._root.make_infix_expr())
-        pass
+        return simplify_parenthesis(self._root.make_infix_expr())
 
     def postfix(self) -> str:
         #return self._root.make_postfix_expr()
