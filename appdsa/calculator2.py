@@ -196,28 +196,28 @@ class Application:
         self._expr = None
 
     def demos(self):
-        self._expr = Expression("{(3 + 4) * 5 ^ (1 + 1) - 7}")
+        self._expr = Expression("{ (3 + 4) * 5 ^ (1 + 1) - 7 }")
         print("----------")
         print("Example #1")
         print("----------")
         print(f"Expression ...... : {self._expr}")
         print(f"Result .......... : {self._expr.value()}")
 
-        self._expr = Expression("{2 ^ 3 ^ 2 ^ 2}")
+        self._expr = Expression("{ 2 ^ 3 ^ 2 ^ 2 }")
         print("----------")
         print("Example #2")
         print("----------")
         print(f"Expression ...... : {self._expr}")
         print(f"Result .......... : {self._expr.value()}")
 
-        self._expr = Expression("{(9 + 1) * (7 + 2 * 5)}")
+        self._expr = Expression("{ ( 9 + 1 ) * ( 7 + 2 * 5 ) }")
         print("----------")
         print("Example #3")
         print("----------")
         print(f"Expression ...... : {self._expr}")
         print(f"Result .......... : {self._expr.value()}")
 
-        self._expr = Expression("{3/7 - 2/7 : (5 : 14)}")
+        self._expr = Expression("{ 3/7 - 2/7 : (5 : 14) }")
         print("----------")
         print("Example #4")
         print("----------")
@@ -235,7 +235,7 @@ class Application:
         expr = self._read_expr()
         while len(expr) > 0:
             self._expr = Expression("{" + expr + "}")
-            print(f"\x1b[32mresult =\x1b[0m {self._expr.value()}")
+            print(f"\x1b[31mresult =\x1b[0m {self._expr.value()}")
             expr = self._read_expr()
 
     def __call__(self):
@@ -245,3 +245,5 @@ class Application:
 def main():
     app = Application()
     app()
+
+# TODO: Check the validity of the code: some hidden bug is in here
