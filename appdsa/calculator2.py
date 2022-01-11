@@ -30,7 +30,11 @@ class Expression:
     """Expression to be evaluated."""
 
     def __init__(self, src):
-        pass
+        self._src = src
+        self._length = len(src)
+        self._index = 0
+        self._error = 0
+        self._value = 0
 
     def __str__(self):
         pass
