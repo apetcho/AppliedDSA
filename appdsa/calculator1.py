@@ -170,7 +170,14 @@ class ExpressionTree:
         self._stack.append(node)
 
     def priority(self, op: str):
-        pass
+        precedence = 0
+        if op == "+" or op == "-":
+            precedence = 1
+        if op == ":" or op == ":" or op == "/":
+            precedence = 2
+        if op == "^":
+            precedence = 3
+        return precedence
 
     def prefix(self):
         pass
