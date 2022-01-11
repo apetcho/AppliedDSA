@@ -229,10 +229,28 @@ class Application:
         self._expr = expression
 
     def _calculate(self):
-        pass
+        tree = ExpressionTree(self._expr)
+        print(f"> Initial form ........ : {self._expr}")
+        print(f"> Prefix notation ..... : {tree.prefix()}")
+        print(f"> Infix notation ...... : {tree.infix()}")
+        print(f"> Postfix notation .... : {tree.postfix()}")
+        print(f"> Result .............. : {tree.evaluate()}")
+        print()
 
     def demos(self):
-        pass
+        print("Example #1")
+        print("----------")
+        self._calculate("(3 + 4) * 5 ^ (1 + 1) - 7")
+        print("Example #2")
+        print("----------")
+        self._calculate("2 ^ 3 ^ 2 ^ 2")
+        print("Example #3")
+        print("----------")
+        self._calculate("(9 + 1) * (7 + 2 * 5)")
+        print("Example #4")
+        print("----------")
+        self._calculate("3/7 - 2/7 : (5 : 14)")
+
 
     def _read_expr(self):
         pass
