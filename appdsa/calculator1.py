@@ -134,7 +134,32 @@ class ExpressionTree:
     """Binary tree representing an expression."""
 
     def __init__(self, infix: str):
-        pass
+        self._operators = []
+        self._stack = []
+        lexer = Lexer()
+        tokens = lexer(infix)
+        for token in tokens:
+            if token[-1] in string.digits:
+                self._stack.append(TermNode(token))
+                continue
+            if token == "(":
+                self._operators.append(token)
+                continue
+            if token == ")":
+                while len(self._operators) > 0 and self._operators[-1] != "(":
+                    self.new_operation()
+            if token in "+-*:/^":
+                if token != "^":
+                    while (len(self._operators) > 0 and
+                        self.priority(
+                            self._operators[-1])>=self.priority(token)):
+                        self.new_operation()
+                self._operators.append(token)
+                continue
+        while len(self._operators) > 0:
+            self.new_operation()
+        if len(self._stack) == 1:
+            self._root = self._stack.pop(-1)
 
     def new_operation(self):
         pass
