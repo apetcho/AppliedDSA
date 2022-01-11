@@ -120,7 +120,7 @@ class TermNode:
 
     @property
     def term(self):
-        pass
+        return self._term
 
 
 def simplify_parenthesis(textline: str) -> str:
