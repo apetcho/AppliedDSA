@@ -54,8 +54,8 @@ class Expression:
             return False
         return True
 
-    def no_error(self):
-        pass
+    def noerror(self) -> bool:
+        return not self.error_exists()
 
     def value(self):
         pass
