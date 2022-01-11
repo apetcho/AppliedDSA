@@ -23,6 +23,7 @@ expr4 ::= <natural> |
 natural ::= ( '0' | '1' | '2' | '3' | '4'| '5' | '6' | '7' | '8' | '9' )*
 
 """
+from ctypes import Union
 from .rational import Rational
 
 
@@ -57,8 +58,9 @@ class Expression:
     def noerror(self) -> bool:
         return not self.error_exists()
 
-    def value(self):
-        pass
+    def value(self) -> Union[float, int, Rational]:
+        self.evaluate()
+        return self._value
 
     def evaluate(self):
         pass
