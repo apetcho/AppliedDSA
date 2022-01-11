@@ -186,8 +186,7 @@ class ExpressionTree:
         return simplify_parenthesis(self._root.make_infix_expr())
 
     def postfix(self) -> str:
-        #return self._root.make_postfix_expr()
-        pass
+        return self._root.make_postfix_expr()
 
     def evaluate(self):
         pass
