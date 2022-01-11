@@ -226,7 +226,7 @@ class ExpressionTree:
 class Application:
 
     def __init__(self, expression: str):
-        pass
+        self._expr = expression
 
     def _calculate(self):
         pass
