@@ -1,9 +1,13 @@
 """Simple arithmetic calculator using rational.py module and a binary tree."""
+import re
+import string
+
 
 class Lexer:
 
     def __init__(self):
-        pass
+        self._separators = re.compile(r"([+\-*:^(){}])")
+        self._tokens = None
 
     def __call__(self, textline: str) -> list:
         pass
