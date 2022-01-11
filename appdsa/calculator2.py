@@ -229,13 +229,13 @@ class Application:
         print("------------------------------------------------------")
         print("Next calculation (leave empty and press ENTER to quit)")
         print("------------------------------------------------------")
-        return input("calc2>> ")
+        return input("\x1b[32mcalc2>>\x1b[0m ")
 
     def _mainloop(self) -> None:
         expr = self._read_expr()
         while len(expr) > 0:
             self._expr = Expression("{" + expr + "}")
-            print(f"result = {self._expr.value()}")
+            print(f"\x1b[32mresult =\x1b[0m {self._expr.value()}")
             expr = self._read_expr()
 
     def __call__(self):
@@ -243,4 +243,5 @@ class Application:
 
 
 def main():
-    pass
+    app = Application()
+    app()
