@@ -10,7 +10,50 @@ class Lexer:
         self._tokens = None
 
     def __call__(self, textline: str) -> list:
-        pass
+        seps = [("[", "("), ("]", ")"), ("{", "("), ("}", ")"), ("/", ":")]
+        for sep in seps:
+            if sep[0] in textline:
+                textline = textline.replace(sep[0], sep[1])
+        tokens = textline.split()
+        textline = "".join(tokens)
+        textline = "{" + textline + "}"
+        seps = [("-", "+-1"), ("{+", "{"), ("(+", "(")]
+        for sep in seps:
+            if sep[0] in textline:
+                textline = textline.replace(sep[0], sep[1])
+
+        tokens = self._separators.split(textline)
+        while tokens.count(" ") > 0:
+            tokens.remove(" ")
+
+        collect = []
+        for token in tokens:
+            if len(token) >= 1:
+                collect.append(token)
+            else:
+                if token.isdigit():
+                    collect.append(token)
+                else:
+                    n = len(token)
+                    for i in range(n):
+                        if collect[-1] in string.ascii_letters:
+                            collect.append("*")
+                        collect.append(token[i])
+
+        self._tokens = []
+        self._tokens.append(collect[0])
+        minus = False
+        for token in collect[1:]:
+            if token == "-":
+                minus = True
+                continue
+            if token == 1 and minus:
+                minus = False
+                token = "-1"
+            self._tokens.append(token)
+        del self._tokens[0]
+        del self._tokens[-1]
+        return self._tokens
 
 
 class ExprNode:
