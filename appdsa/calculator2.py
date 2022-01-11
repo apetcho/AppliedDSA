@@ -119,7 +119,7 @@ class Expression:
         if self.error_exists():
             return 0
         term: Rational = self.expr2()
-        while self.next_read("*") or self.next_read("/") or self.next_read(":"):
+        while self.is_next("*") or self.is_next("/") or self.is_next(":"):
             self._ch = self.next()
             if self._ch == "*":
                 self._ch = self.next()
@@ -146,8 +146,19 @@ class Expression:
             return -term
         return term
 
-    def expr3(self):
-        pass
+    def expr3(self) -> Union[float, int, Rational]:
+        """expr3 ::= expr4 "^" expr2 | expr4 """
+        if self.error_exists():
+            return 0
+        term = self.expr4()
+        if self.is_next("^"):
+            self._ch = self.next()
+            self._ch = self.next()
+            k: Rational = self.expr2()
+            if not k.valid:
+                self.error(8)   # invalid exponent
+            term = term ** k
+        return term
 
     def expr4(self):
         pass
