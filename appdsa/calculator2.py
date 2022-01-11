@@ -231,8 +231,12 @@ class Application:
         print("------------------------------------------------------")
         return input("calc2>> ")
 
-    def _mainloop(self):
-        pass
+    def _mainloop(self) -> None:
+        expr = self._read_expr()
+        while len(expr) > 0:
+            self._expr = Expression("{" + expr + "}")
+            print(f"result = {self._expr.value()}")
+            expr = self._read_expr()
 
     def __call__(self):
         pass
