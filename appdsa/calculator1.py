@@ -225,10 +225,11 @@ class ExpressionTree:
 
 class Application:
 
-    def __init__(self, expression: str):
-        self._expr = expression
+    def __init__(self):
+        self._expr = None
 
-    def _calculate(self):
+    def _calculate(self, expr):
+        self._expr = expr
         tree = ExpressionTree(self._expr)
         print(f"> Initial form ........ : {self._expr}")
         print(f"> Prefix notation ..... : {tree.prefix()}")
@@ -257,7 +258,10 @@ class Application:
         return input("calc>> ")
 
     def _mainloop(self):
-        pass
+        expr = self._read_expr()
+        while len(expr) > 0:
+            self._calculate(expr)
+            expr = self._read_expr()
 
     def __call__(self):
         pass
