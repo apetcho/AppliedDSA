@@ -114,8 +114,24 @@ class Expression:
                     term -= self.expr1()
         return term
 
-    def expr1(self):
-        pass
+    def expr1(self) -> Union[float, int, Rational]:
+        """expr1 := expr2 "*" expr2 | expr2 "/" expr2 | expr2 """
+        if self.error_exists():
+            return 0
+        term: Rational = self.expr2()
+        while self.next_read("*") or self.next_read("/") or self.next_read(":"):
+            self._ch = self.next()
+            if self._ch == "*":
+                self._ch = self.next()
+                term *= self.expr2()
+            else:
+                if self._ch == "/" or self._ch == ":":
+                    self._ch = self.next()
+                    term /= self.expr2()
+                    if not term.valid:
+                        self.error(7)   # division by zero
+        return term
+
 
     def expr2(self):
         pass
