@@ -189,7 +189,38 @@ class ExpressionTree:
         return self._root.make_postfix_expr()
 
     def evaluate(self):
-        pass
+        result = []
+        tokens = self._root.make_postfix_expr().split("|")
+        for token in tokens:
+            if token[-1] in string.digits:
+                result.append(Rational(int(token)))
+                continue
+            if token == "+":
+                x = result.pop(-1)
+                y = result.pop(-1)
+                result.append((x+y))
+                continue
+            if token == "-":
+                x = result.pop(-1)
+                y = result.pop(-1)
+                result.append((x-y))
+                continue
+            if token == "*":
+                x = result.pop(-1)
+                y = result.pop(-1)
+                result.append((x*y))
+                continue
+            if token == ":" or token == "/":
+                x = result.pop(-1)
+                y = result.pop(-1)
+                result.append((x/y))
+                continue
+            if token == "^":
+                x = result.pop(-1)
+                y = result.pop(-1)
+                result.append((x**y))
+                continue
+        return result.pop(-1)
 
 
 class Application:
