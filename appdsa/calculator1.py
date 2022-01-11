@@ -17,20 +17,21 @@ class Lexer:
             if sep[0] in textline:
                 textline = textline.replace(sep[0], sep[1])
         tokens = textline.split()
+        tokens = [token.strip() for token in tokens]
         textline = "".join(tokens)
         textline = "{" + textline + "}"
-        seps = [("-", "+-1"), ("{+", "{"), ("(+", "(")]
+        seps = [("-", "+-1*"), ("{+", "{"), ("(+", "(")]
         for sep in seps:
             if sep[0] in textline:
                 textline = textline.replace(sep[0], sep[1])
 
         tokens = self._separators.split(textline)
-        while tokens.count(" ") > 0:
-            tokens.remove(" ")
+        while tokens.count("") > 0:
+            tokens.remove("")
 
         collect = []
         for token in tokens:
-            if len(token) >= 1:
+            if len(token) >= 1: # XXX
                 collect.append(token)
             else:
                 if token.isdigit():
@@ -49,7 +50,7 @@ class Lexer:
             if token == "-":
                 minus = True
                 continue
-            if token == 1 and minus:
+            if token == "1" and minus:
                 minus = False
                 token = "-1"
             self._tokens.append(token)
@@ -92,11 +93,11 @@ class TermNode:
         if isinstance(self._left, Rational):
             left = str(self._left)
         else:
-            left = self._left.make_prefix_expr()
+            left = self._left.make_infix_expr()
         if isinstance(self._right, Rational):
             right = str(self._right)
         else:
-            right = self._right.make_prefix_expr()
+            right = self._right.make_infix_expr()
 
         op = self._term
         retval = (str(left) + "|" + str(op) + "|" +  str(right))
@@ -109,11 +110,11 @@ class TermNode:
         if isinstance(self._left, Rational):
             left = str(self._left)
         else:
-            left = self._left.make_prefix_expr()
+            left = self._left.make_postfix_expr()
         if isinstance(self._right, Rational):
             right = str(self._right)
         else:
-            right = self._right.make_prefix_expr()
+            right = self._right.make_postfix_expr()
 
         op = self._term
         retval = (str(left) + "|" + str(right) + "|" + str(op))
@@ -149,6 +150,8 @@ class ExpressionTree:
             if token == ")":
                 while len(self._operators) > 0 and self._operators[-1] != "(":
                     self.new_operation()
+                self._operators.pop(-1)
+                continue
             if token in "+-*:/^":
                 if token != "^":
                     while (len(self._operators) > 0 and
@@ -173,7 +176,7 @@ class ExpressionTree:
         precedence = 0
         if op == "+" or op == "-":
             precedence = 1
-        if op == ":" or op == ":" or op == "/":
+        if op == ":" or op == "*" or op == "/":
             precedence = 2
         if op == "^":
             precedence = 3
@@ -196,28 +199,28 @@ class ExpressionTree:
                 result.append(Rational(int(token)))
                 continue
             if token == "+":
-                x = result.pop(-1)
                 y = result.pop(-1)
+                x = result.pop(-1)
                 result.append((x+y))
                 continue
             if token == "-":
-                x = result.pop(-1)
                 y = result.pop(-1)
+                x = result.pop(-1)
                 result.append((x-y))
                 continue
             if token == "*":
-                x = result.pop(-1)
                 y = result.pop(-1)
+                x = result.pop(-1)
                 result.append((x*y))
                 continue
             if token == ":" or token == "/":
-                x = result.pop(-1)
                 y = result.pop(-1)
+                x = result.pop(-1)
                 result.append((x/y))
                 continue
             if token == "^":
-                x = result.pop(-1)
                 y = result.pop(-1)
+                x = result.pop(-1)
                 result.append((x**y))
                 continue
         return result.pop(-1)
