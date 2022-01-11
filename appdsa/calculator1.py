@@ -1,6 +1,7 @@
 """Simple arithmetic calculator using rational.py module and a binary tree."""
 import re
 import string
+from .rational import Rational
 
 
 class Lexer:
@@ -59,8 +60,12 @@ class Lexer:
 class ExprNode:
     """Expression node."""
 
-    def __init__(self):
-        pass
+    def __init__(
+        self, term: Rational=None,
+        left: "ExprNode"=None, right: "ExprNode"=None):
+        self._term = term
+        self._left = left
+        self._right = None
 
     def make_prefix_expr(self):
         pass
