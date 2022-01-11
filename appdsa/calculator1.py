@@ -160,7 +160,7 @@ class ExpressionTree:
         while len(self._operators) > 0:
             self.new_operation()
         if len(self._stack) == 1:
-            self._root = self._stack.pop(-1)
+            self._root: TermNode = self._stack.pop(-1)
 
     def new_operation(self):
         top = self._operators.pop(-1)
@@ -179,13 +179,15 @@ class ExpressionTree:
             precedence = 3
         return precedence
 
-    def prefix(self):
+    def prefix(self) -> str:
+        return self._root.make_prefix_expr()
+
+    def infix(self) -> str:
+        #return simplify_parenthesis(self._root.make_infix_expr())
         pass
 
-    def infix(self):
-        pass
-
-    def postfix(self):
+    def postfix(self) -> str:
+        #return self._root.make_postfix_expr()
         pass
 
     def evaluate(self):
