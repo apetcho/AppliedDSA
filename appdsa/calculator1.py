@@ -57,12 +57,12 @@ class Lexer:
         return self._tokens
 
 
-class ExprNode:
+class TermNode:
     """Expression node."""
 
     def __init__(
         self, term: Rational=None,
-        left: "ExprNode"=None, right: "ExprNode"=None):
+        left: "TermNode"=None, right: "TermNode"=None):
         self._term = term
         self._left = left
         self._right = None
