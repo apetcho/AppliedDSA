@@ -102,7 +102,21 @@ class TermNode:
         return retval
 
     def make_postfix_expr(self):
-        pass
+        """Return postfix notation form of expression (or term)."""
+        if self._term[-1] in string.digits:
+            return str(self._term)
+        if isinstance(self._left, Rational):
+            left = str(self._left)
+        else:
+            left = self._left.make_prefix_expr()
+        if isinstance(self._right, Rational):
+            right = str(self._right)
+        else:
+            right = self._right.make_prefix_expr()
+
+        op = self._term
+        retval = (str(left) + "|" + str(right) + "|" + str(op))
+        return retval
 
     @property
     def term(self):
