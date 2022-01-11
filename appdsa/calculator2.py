@@ -196,7 +196,34 @@ class Application:
         self._expr = None
 
     def demos(self):
-        pass
+        self._expr = Expression("{(3 + 4) * 5 ^ (1 + 1) - 7}")
+        print("----------")
+        print("Example #1")
+        print("----------")
+        print(f"Expression ...... : {self._expr}")
+        print(f"Result .......... : {self._expr.value()}")
+
+        self._expr = Expression("{2 ^ 3 ^ 2 ^ 2}")
+        print("----------")
+        print("Example #2")
+        print("----------")
+        print(f"Expression ...... : {self._expr}")
+        print(f"Result .......... : {self._expr.value()}")
+
+        self._expr = Expression("{(9 + 1) * (7 + 2 * 5)}")
+        print("----------")
+        print("Example #3")
+        print("----------")
+        print(f"Expression ...... : {self._expr}")
+        print(f"Result .......... : {self._expr.value()}")
+
+        self._expr = Expression("{3/7 - 2/7 : (5 : 14)}")
+        print("----------")
+        print("Example #4")
+        print("----------")
+        print(f"Expression ...... : {self._expr}")
+        print(f"Result .......... : {self._expr.value()}")
+
 
     def _read_expr(self):
         pass
