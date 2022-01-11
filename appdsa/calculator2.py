@@ -37,7 +37,11 @@ class Expression:
         self._value = 0
 
     def __str__(self):
-        pass
+        retval = ""
+        for ch in self._src:
+            if not str.isspace(ch):
+                retval += ch
+        return retval
 
     __repr__ = __str__
 
