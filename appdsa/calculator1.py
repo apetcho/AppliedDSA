@@ -124,7 +124,10 @@ class TermNode:
 
 
 def simplify_parenthesis(textline: str) -> str:
-    pass
+    """Remove enclosing parenthesis if available."""
+    if textline.startswith("(") and textline.endswith(")"):
+        textline = textline[1:-1]
+    return textline
 
 
 class ExpressionTree:
