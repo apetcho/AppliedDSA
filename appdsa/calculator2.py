@@ -45,8 +45,9 @@ class Expression:
 
     __repr__ = __str__
 
-    def error(self):
-        pass
+    def error(self, err: int):
+        if self._error == 0:
+            self._error = err
 
     def error_exists(self):
         pass
