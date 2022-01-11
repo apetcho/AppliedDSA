@@ -83,8 +83,15 @@ class Expression:
                 return token
         return '\0'
 
-    def next_read(self):
-        pass
+    def next_read(self) -> str:
+        while self._index < self._length:
+            token = self._src[self._index]
+            self._index += 1
+            if str.isspace(token):
+                self._index += 1
+            else:
+                return token
+        return '\0'
 
     def is_next(self):
         pass
