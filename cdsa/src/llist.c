@@ -48,3 +48,29 @@ void table_add(ListTable *table, const char *key, int value){
     node->next = table->first;
     table->first = node;
 }
+
+
+/**
+ * @brief Search a given key in a table and retun its value
+ * 
+ * @param table Table to search
+ * @param key search key
+ * @param value value returned if key found
+ * @return int 0 if key not found otherwise retunr 1
+ */
+int table_search(ListTable *table, const char *key, int *value){
+    struct ListNode *node;
+
+    if(check_table(table) == -1){
+        fprintf(stderr, "Table is empty or non-existant");
+        exit(EXIT_FAILURE);
+    }
+
+    for(node=table->first; node != NULL; node=node->next){
+        if(strcmp(node->key, key) == 0){
+            *value = node->value;
+            return 1;
+        }
+    }
+    return 0;
+}
