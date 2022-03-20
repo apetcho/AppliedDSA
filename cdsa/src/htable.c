@@ -36,3 +36,22 @@ HTable* htable_create(void){
 
     return table;
 }
+
+// --
+void htable_add(HTable *table, const char *key, int value){
+    HNode *node = (HNode*)malloc(sizeof(HNode));
+    if(check_hnode(node) == -1){
+        perror("htable_add(): allocation failed.");
+        exit(EXIT_FAILURE);
+    }
+    node->key = (const char*)malloc(strlen(key)+1);
+    if(node->key == NULL){
+        perror("htable_add(): allocation failed.");
+        exit(EXIT_FAILURE);
+    }
+    strcpy(node->key, key);
+    node->value = value;
+    int h = hash(key);
+    node->next = table->array[h];
+    table->array[h] = node;
+}
