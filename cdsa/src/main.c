@@ -3,6 +3,7 @@
 #include<string.h>
 
 #include "llist.h"
+#include "htable.h"
 
 typedef enum DTYPE{
     LINKED_LIST = 1,
@@ -11,6 +12,7 @@ typedef enum DTYPE{
 
 void print_table(void *table, DTYPE type);
 void testListTable();
+void testHTable();
 
 //
 static void print_listnode(ListNode node){
@@ -19,6 +21,14 @@ static void print_listnode(ListNode node){
     puts(buf);
     return;
 }
+
+static void print_hnode(HNode node){
+    char buf[48];
+    sprintf(buf, "%s => %d", node.key, node.value);
+    puts(buf);
+    return;
+}
+
 
 // -----------------------------------------------
 //              M A I N     D R I V E R
@@ -39,6 +49,15 @@ void print_table(void *table, DTYPE type){
         }
         return;
     }else if(type == HASH_TABLE){
+        HTable *_table = (HTable*)table;
+        HNode *node;
+        HNode *next;
+        for(int i=0; i < BUCKET_COUNT; i++){
+            for(node = _table->array[i]; node != NULL; node=next){
+                next = node->next;
+                print_hnode(*node);
+            }
+        }
         return;
     }
 }
@@ -66,4 +85,14 @@ void testListTable(){
     table_free(table);
 
     return;
+}
+
+
+//
+void testHTable(){
+    // Create
+    // Add
+    // Search
+    // Print
+    // Free
 }
