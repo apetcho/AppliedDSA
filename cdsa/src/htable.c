@@ -55,3 +55,17 @@ void htable_add(HTable *table, const char *key, int value){
     node->next = table->array[h];
     table->array[h] = node;
 }
+
+//
+int htable_search(HTable *table, const char *key, int *value){
+    HNode *node;
+    int h = hash(key);
+    for(node=table->array[h]; node != NULL; node = node->next){
+        if(strcmp(node->key, key) == 0){
+            *value = node->value;
+            return 1;
+        }
+    }
+
+    return 0;
+}
