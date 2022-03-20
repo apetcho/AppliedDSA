@@ -15,7 +15,7 @@ void testListTable();
 //
 static void print_listnode(ListNode node){
     char buf[48];
-    sprintf(buf, "(%24s, %7d)\n", node.key, node.value);
+    sprintf(buf, "(%s, %d)", node.key, node.value);
     puts(buf);
     return;
 }
