@@ -36,6 +36,8 @@ static void print_hnode(HNode node){
 int main(int argc, char **argv){
 
     testListTable();
+    puts("\n----------------------------\n");
+    testHTable();
     return EXIT_SUCCESS;
 }
 
@@ -91,8 +93,22 @@ void testListTable(){
 //
 void testHTable(){
     // Create
+    HTable *table = htable_create();
     // Add
+    htable_add(table, "Ruth", 3);
+    htable_add(table, "Gehrig", 4);
+    htable_add(table, "Mantle", 7);
     // Search
+    const char *key = "Gehrig";
+    int value;
+    int found;
+    found = htable_search(table, key, &value);
+    if(found){
+        printf("Found node with key = %s\nContents:\n", key);
+        printf("%s => %d\n", key, value);
+    }
     // Print
+    print_table(table, HASH_TABLE);
     // Free
+    htable_free(table);
 }
