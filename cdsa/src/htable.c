@@ -69,3 +69,18 @@ int htable_search(HTable *table, const char *key, int *value){
 
     return 0;
 }
+
+// --
+void htable_free(HTable *table){
+    HNode *node;
+    HNode *next;
+    int b;
+    for(b=0; b < BUCKET_COUNT; b++){
+        for(node=table->array[b]; node != NULL; node = next){
+            next = node->next;
+            if(node->key){ free(node->key); }
+            free(node);
+        }
+    }
+    free(table);
+}
