@@ -8,4 +8,4 @@ dist
 .pytest*
 .vscode/
 */__pycache__
-*/build/
+build/
