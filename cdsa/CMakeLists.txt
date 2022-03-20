@@ -7,5 +7,7 @@ set(CMAKE_C_STANDARD_REQUIRED TRUE)
 add_executable(cdsatuto
     src/main.c
     src/llist.c
+    src/htable.c
     src/llist.h
+    src/htable.h
 )
