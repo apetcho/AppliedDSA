@@ -32,7 +32,7 @@ void table_add(ListTable *table, const char *key, int value){
     }
 
     // Allocate a new node
-    struct ListNode *node = (struct ListNode*)malloc(sizeof(struct ListNode));
+    ListNode *node = (ListNode*)malloc(sizeof(ListNode));
     if(node == NULL){
         perror("table_add(): not enough memory slot\n");
         exit(EXIT_FAILURE);
@@ -73,4 +73,21 @@ int table_search(ListTable *table, const char *key, int *value){
         }
     }
     return 0;
+}
+
+
+//
+void table_free(ListTable *table){
+    if(check_table(table) == -1){
+        return;
+    }
+    ListNode *node;
+    ListNode *next;
+
+    for(node= table->first; node != NULL; node = next){
+        next = node->next;    
+        free(node->key);
+        free(node);
+    }
+    free(table);
 }
