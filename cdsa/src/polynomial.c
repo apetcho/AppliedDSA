@@ -53,6 +53,7 @@ int main(int argc, char **argv){
         puts("\nEnter your option:");
         MYPROMPT;
         scanf("%d", &option);
+        puts("");
         switch(option){
         case 1:
             start1 = create_polynomial(start1);
@@ -112,9 +113,11 @@ Node *create_polynomial(Node *start){
     puts("Enter the number:");
     MYPROMPT;
     scanf("%d", &num);
+    puts("");
     puts("Enter its coefficient:");
     MYPROMPT;
     scanf("%d", &coef);
+    puts("");
     while(num != -1){
         if(start == NULL){
             newnode = (Node*)malloc(sizeof(Node));
@@ -135,17 +138,29 @@ Node *create_polynomial(Node *start){
         }
         puts("Enter the number:");
         scanf("%d", &num);
+        puts("");
         if(num == -1){ break; }
         printf("Enter its coefficient:");
         MYPROMPT;
         scanf("%d", &coef);
+        puts("");
     }
 
     return start;
 }
 
+// ---
+Node *display_polynomial(Node *start){
+    Node *ptr;
+    ptr = start;
+    while(ptr != NULL){
+        printf("%dx%d ", ptr->num, ptr->coef);
+        ptr = ptr->next;
+    }
+    return start;
+}
 
-Node *display_polynomial(Node *x){}
+// ----
 Node *add_polynomial(Node *x, Node *y, Node *z){}
 Node *sub_polynomial(Node *x, Node *y, Node *z){}
 Node *add_node(Node *x, int a, int b){}
