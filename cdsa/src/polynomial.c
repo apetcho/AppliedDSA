@@ -12,6 +12,8 @@
 #define MYBLUE      "\x1b[34m"
 #define MYWHITE     "\x1b[37m"
 
+#define MYPROMPT    printf("%s ", "poly>>")
+
 
 // -------------------------------------------------------------------------
 // Write a program to store a polynomial using linked list. Also, perform
@@ -21,7 +23,7 @@
 typedef struct Node Node;
 struct Node{
     int num;
-    int coeff;
+    int coef;
     Node *next;
 };
 
@@ -49,7 +51,7 @@ int main(int argc, char **argv){
     do{
         menu();
         puts("\nEnter your option:");
-        printf("poly>> ");
+        MYPROMPT;
         scanf("%d", &option);
         switch(option){
         case 1:
@@ -100,11 +102,49 @@ void menu(){
     puts("7. Substract the polynomials");
     puts("8. Display the result");
     puts("9. EXIT");
-    
-
 }
 
-Node *create_polynomial(Node *x){}
+// ---
+Node *create_polynomial(Node *start){
+    Node *newnode;
+    Node *ptr;
+    int num, coef;
+    puts("Enter the number:");
+    MYPROMPT;
+    scanf("%d", &num);
+    puts("Enter its coefficient:");
+    MYPROMPT;
+    scanf("%d", &coef);
+    while(num != -1){
+        if(start == NULL){
+            newnode = (Node*)malloc(sizeof(Node));
+            assert(newnode != NULL);
+            newnode->num = num;
+            newnode->coef = coef;
+            newnode->next = NULL;
+            start = newnode;
+        }else{
+            ptr = start;
+            while(ptr->next != NULL){ ptr = ptr->next; }
+            newnode = (Node*)malloc(sizeof(Node));
+            assert(newnode != NULL);
+            newnode->num = num;
+            newnode->coef = coef;
+            newnode->next = NULL;
+            ptr->next = newnode;
+        }
+        puts("Enter the number:");
+        scanf("%d", &num);
+        if(num == -1){ break; }
+        printf("Enter its coefficient:");
+        MYPROMPT;
+        scanf("%d", &coef);
+    }
+
+    return start;
+}
+
+
 Node *display_polynomial(Node *x){}
 Node *add_polynomial(Node *x, Node *y, Node *z){}
 Node *sub_polynomial(Node *x, Node *y, Node *z){}
